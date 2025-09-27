@@ -257,19 +257,18 @@ The `.lib` file doesn’t just provide timing arcs — it starts with **definiti
 
 <img width="549" height="317" alt="Image" src="https://github.com/user-attachments/assets/ee863ca3-bbbb-4640-bc95-57d603f73b1c" />
 
-**Top module**
-
-<img width="343" height="107" alt="Image" src="https://github.com/user-attachments/assets/abea59db-6de2-44c3-ab87-71c3e7e9eb23" />
-
 **Hierarchical Example** – modules preserved:
 
 <img width="295" height="465" alt="image" src="https://github.com/user-attachments/assets/354ee9f0-6504-4378-b1db-9de9f804099d" />
 
-
+<img width="343" height="107" alt="Image" src="https://github.com/user-attachments/assets/abea59db-6de2-44c3-ab87-71c3e7e9eb23" />
 
 **Flat Synthesis** – Yosys output merges logic:
 
 <img width="247" height="463" alt="image" src="https://github.com/user-attachments/assets/b84d6097-b97c-4995-a57b-d348e0f63407" />
+
+<img width="1250" height="265" alt="image" src="https://github.com/user-attachments/assets/bc02a2e7-de53-40f1-ae25-58f33d16f6ae" />
+
 
 ✅ Learned that **flat synthesis improves optimization but loses modularity**.
 
