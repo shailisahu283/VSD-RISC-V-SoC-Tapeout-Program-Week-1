@@ -169,26 +169,18 @@ In a **.lib timing library**, multiple versions of a standard cell are provided:
 
 ---
 **Yosys Cmp**
+
 <img width="454" height="134" alt="Image" src="https://github.com/user-attachments/assets/dc7c5995-92a8-4f84-a4fd-4d8a60cbe3f1" />
 
-**Yosys ABC result goog_mux.v**
-<img width="385" height="107" alt="Image" src="https://github.com/user-attachments/assets/1d7aed09-b503-4612-8335-22c9534ccc68" />
- 
-* Example entry:
+**Yosys ABC result good_mux.v**
 
-```liberty
-cell (NAND2_X1) {
-  area : 1.44;
-  pin(A1) {
-    direction : input;
-    capacitance : 0.018;
-  }
-  pin(Y) {
-    direction : output;
-    function : "!(A1 & A2)";
-  }
-}
-```
+<img width="385" height="107" alt="Image" src="https://github.com/user-attachments/assets/1d7aed09-b503-4612-8335-22c9534ccc68" />
+
+**Yosys_good_mux_realization**
+
+<img width="1167" height="333" alt="Image" src="https://github.com/user-attachments/assets/48651c6b-b5fb-4026-a43c-a8a074183b76" />
+ 
+
 
 ✅ Learned how synthesis tools use `.lib` files for timing-driven optimization.
 
