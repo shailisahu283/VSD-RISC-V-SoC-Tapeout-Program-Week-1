@@ -263,13 +263,8 @@ The `.lib` file doesn’t just provide timing arcs — it starts with **definiti
 
 **Hierarchical Example** – modules preserved:
 
-```verilog
-module top(input a,b,c, output y);
-    wire w;
-    and_gate u1 (.a(a), .b(b), .y(w));
-    or_gate  u2 (.a(w), .b(c), .y(y));
-endmodule
-```
+<img width="322" height="536" alt="image" src="https://github.com/user-attachments/assets/25de8636-67ec-49c9-b5f0-557b912f154c" />
+
 
 **Flat Synthesis** – Yosys output merges logic:
 
