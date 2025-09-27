@@ -276,7 +276,7 @@ The `.lib` file doesn’t just provide timing arcs — it starts with **definiti
 
 ### 3. Flop Coding Styles
 
-* **Async Reset DFF**
+* **Async Reset DFF Example code**
 
 ```verilog
 always @(posedge clk or posedge rst)
@@ -284,13 +284,23 @@ always @(posedge clk or posedge rst)
     else     q <= d;
 ```
 
-* **Sync Reset DFF**
+<img width="1250" height="348" alt="image" src="https://github.com/user-attachments/assets/b2bc0d1e-1993-446f-b9a1-a22209c1cba1" />
+
+<img width="1248" height="274" alt="image" src="https://github.com/user-attachments/assets/0a92fd63-5bd4-4e26-af3c-d5dade85dda2" />
+
+
+* **Sync Reset DFF Example code**
 
 ```verilog
 always @(posedge clk)
     if (rst) q <= 0;
     else     q <= d;
 ```
+
+<img width="1249" height="353" alt="image" src="https://github.com/user-attachments/assets/85d89566-641c-41c0-8023-f400d1286cd7" />
+
+<img width="1247" height="297" alt="image" src="https://github.com/user-attachments/assets/0dd73b6a-4b22-4d3d-86c0-8f259e715b5e" />
+
 
 ✅ Learned difference between **async vs sync reset**, and how it affects synthesis.
 
@@ -299,6 +309,8 @@ always @(posedge clk)
 ## 🟢 Day 3 – Combinational and Sequential Optimizations
 
 ### 1. Constant Propagation Example
+
+<img width="1231" height="601" alt="image" src="https://github.com/user-attachments/assets/0bc0fd20-8e75-4f90-ac50-2168f347d1f6" />
 
 ```verilog
 assign y = (a & 1'b0) | (b & 1'b1);
@@ -311,8 +323,16 @@ assign y = b;
 ```
 
 ---
+### 2. Boolean Optimization Example
+
+<img width="1148" height="586" alt="image" src="https://github.com/user-attachments/assets/3b0de55b-8585-4c53-ac01-bb0a84a9de9c" />
+
 
 ### 2. Sequential Optimization Example
+
+### i. Sequential Constant Optimization Example
+
+<img width="1292" height="665" alt="image" src="https://github.com/user-attachments/assets/d7f9879d-30d5-4d69-8b86-c43badc6d60b" />
 
 Unused flop removed:
 
@@ -321,6 +341,9 @@ always @(posedge clk)
     q1 <= d;   // used
     q2 <= d;   // unused
 ```
+
+<img width="1253" height="661" alt="image" src="https://github.com/user-attachments/assets/c2ea5139-7989-4acb-a7af-b219f59046ab" />
+
 
 ✅ Synthesized netlist contains **only q1 flop**.
 
@@ -364,6 +387,20 @@ end
 ---
 
 ## 🟢 Day 5 – Optimization in Synthesis
+
+**Example2 Y=X*2**
+
+<img width="692" height="506" alt="image" src="https://github.com/user-attachments/assets/645df4a1-3cfa-40f8-84dc-1d388be2b7a9" />
+
+<img width="329" height="183" alt="image" src="https://github.com/user-attachments/assets/a3b851a9-c9cf-43a7-a31c-ccab1c9f7069" />
+
+
+**Example2**
+
+<img width="623" height="303" alt="image" src="https://github.com/user-attachments/assets/247a4636-89fe-476b-a90f-e19868610623" />
+
+<img width="594" height="300" alt="image" src="https://github.com/user-attachments/assets/98e6d291-00da-4ce7-bfe8-f466443372a1" />
+
 
 ### 1. If-Case Constructs
 
