@@ -268,9 +268,7 @@ The `.lib` file doesn’t just provide timing arcs — it starts with **definiti
 
 **Flat Synthesis** – Yosys output merges logic:
 
-```
-y = (a & b) | c
-```
+<img width="247" height="463" alt="image" src="https://github.com/user-attachments/assets/b84d6097-b97c-4995-a57b-d348e0f63407" />
 
 ✅ Learned that **flat synthesis improves optimization but loses modularity**.
 
