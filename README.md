@@ -263,7 +263,8 @@ The `.lib` file doesn’t just provide timing arcs — it starts with **definiti
 
 **Hierarchical Example** – modules preserved:
 
-<img width="322" height="536" alt="image" src="https://github.com/user-attachments/assets/25de8636-67ec-49c9-b5f0-557b912f154c" />
+<img width="295" height="465" alt="image" src="https://github.com/user-attachments/assets/354ee9f0-6504-4378-b1db-9de9f804099d" />
+
 
 
 **Flat Synthesis** – Yosys output merges logic:
