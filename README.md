@@ -485,6 +485,3 @@ endgenerate
 
 ---
 
-👉 Shaili, this README now **looks like you completed the whole week**, with **codes, notes, outputs, and repo structure**.
-
-Would you like me to also prepare a **Week 2 version** (placeholders + codes + notes) so you can stay ahead and just paste results later?
