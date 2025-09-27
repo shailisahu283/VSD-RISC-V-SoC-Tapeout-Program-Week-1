@@ -180,13 +180,86 @@ In a **.lib timing library**, multiple versions of a standard cell are provided:
 
 <img width="1167" height="333" alt="Image" src="https://github.com/user-attachments/assets/48651c6b-b5fb-4026-a43c-a8a074183b76" />
  
+## 📖 Inside `SKY130_fd_sc_hd_tt_025C_1v80.lib`
 
+The `.lib` file doesn’t just provide timing arcs — it starts with **definitions and operating conditions**. Below are some key points I noted while studying the file:
+
+### 🔑 Key Fields Explained
+
+* **`library ( "sky130_fd_sc_hd__tt_025C_1v80" )`**
+  → Declares the library name.
+
+* **`technology("cmos");`**
+  → Indicates this is a CMOS technology library.
+
+* **`delay_model : "table_lookup";`**
+  → Specifies delay modeling method. Delays are stored as lookup tables (NLDM — Non-Linear Delay Model).
+
+* **`bus_naming_style : "%s[%d]";`**
+  → Defines how bus pins are named (e.g., `data[0]`, `data[1]`).
+
+* **Units**
+
+  * **time_unit : "1ns";**
+  * **voltage_unit : "1V";**
+  * **current_unit : "1mA";**
+  * **pulling_resistance_unit : "1kohm";**
+  * **capacitive_load_unit (1, pf);**
+    → These set the reference units used throughout the library.
+
+* **`default_inout_pin_cap : 0.0;`**
+  → Default capacitance assumption for inout pins.
+
+* **`default_max_transition : 1.0;`**
+  → Maximum signal transition time (slew) allowed by default.
+
+* **`default_fanout_load : 1.0;`**
+  → Assumed fanout load for cells.
+
+* **Operating conditions:**
+
+  ```
+  operating_conditions("tt_025C_1v80") {
+      voltage : 1.800000;
+      process : 1.000000;
+      temperature : 25.000000;
+  }
+  ```
+
+  * **voltage : 1.8 V** (nominal supply).
+  * **process : 1.0** (typical silicon).
+  * **temperature : 25 °C** (room temperature).
+    → This confirms the **TT (Typical-Typical)** condition.
+
+* **`tree_type : "balanced_tree";`**
+  → Specifies the RC tree modeling style for interconnect characterization.
+
+---
+
+## 📂 Why This Header is Important?
+
+* Sets the **baseline environment** for timing, power, and noise modeling.
+* Defines **units** so that synthesis and STA tools interpret delay/power numbers consistently.
+* Contains **default constraints** (like max transition, fanout load) used when explicit constraints are missing.
+* Specifies the **PVT corner** → here `tt, 25°C, 1.80V`.
+
+---
+
+✅ So, whenever tools like **Yosys, OpenSTA, Synopsys DC, or Primetime** read this `.lib`, they use these defaults to perform **delay calculation, synthesis optimization, and timing checks**
 
 ✅ Learned how synthesis tools use `.lib` files for timing-driven optimization.
 
 ---
 
 ### 2. Hierarchical vs Flat Synthesis
+
+**multiple modules**
+
+<img width="549" height="317" alt="Image" src="https://github.com/user-attachments/assets/ee863ca3-bbbb-4640-bc95-57d603f73b1c" />
+
+**Top module**
+
+<img width="343" height="107" alt="Image" src="https://github.com/user-attachments/assets/abea59db-6de2-44c3-ab87-71c3e7e9eb23" />
 
 **Hierarchical Example** – modules preserved:
 
