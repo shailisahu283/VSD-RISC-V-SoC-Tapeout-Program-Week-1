@@ -31,31 +31,31 @@ GTKWave Analyzer v3.3.111
 **RTL – 2:1 Multiplexer**
 
 ```verilog
-module mux2x1 (
-    input a, b, sel,
+module good_mux (
+    input i0, i1, sel,
     output y
 );
-    assign y = sel ? b : a;
+    assign y = sel ? i1 : i0;
 endmodule
 ```
 
 **Testbench**
 
 ```verilog
-module tb_mux2x1;
-    reg a, b, sel;
+module tb_good_mux;
+    reg i0, i1, sel;
     wire y;
 
-    mux2x1 uut (.a(a), .b(b), .sel(sel), .y(y));
+    mux2x1 uut (.i0(i0), .i1(i1), .sel(sel), .y(y));
 
     initial begin
         $dumpfile("mux.vcd");
         $dumpvars(0, tb_mux2x1);
 
-        a=0; b=0; sel=0; #10;
-        a=1; b=0; sel=0; #10;
-        a=0; b=1; sel=1; #10;
-        a=1; b=1; sel=1; #10;
+        i0=0; i1=0; sel=0; #10;
+        i0=1; i1=0; sel=0; #10;
+        i0=0; i1=1; sel=1; #10;
+        i0=1; i1=1; sel=1; #10;
 
         $finish;
     end
