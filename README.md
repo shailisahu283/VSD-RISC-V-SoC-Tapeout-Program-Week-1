@@ -88,8 +88,12 @@ stat
    Cell types:
      $_MUX_ 1
 ```
+**Output ScreenShort**
+https://github.com/user-attachments/assets/d6f8c670-ab40-4963-bcee-b99c30e11cc6
+
 
 ✅ Understood how RTL maps into gates.
+
 
 ---
 
