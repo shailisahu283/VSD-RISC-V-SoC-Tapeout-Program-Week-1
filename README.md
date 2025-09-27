@@ -89,7 +89,7 @@ stat
      $_MUX_ 1
 ```
 **Output ScreenShort**
-https://github.com/user-attachments/assets/d6f8c670-ab40-4963-bcee-b99c30e11cc6
+<img width="1239" height="610" alt="Image" src="https://github.com/user-attachments/assets/f846e721-7063-4ec5-9608-b712d71fecf0" />
 
 
 ✅ Understood how RTL maps into gates.
