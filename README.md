@@ -171,7 +171,7 @@ In a **.lib timing library**, multiple versions of a standard cell are provided:
 **Yosys Cmp**
 <img width="454" height="134" alt="Image" src="https://github.com/user-attachments/assets/dc7c5995-92a8-4f84-a4fd-4d8a60cbe3f1" />
 
-**Yosys ABC result nand**
+**Yosys ABC result goog_mux.v**
 <img width="385" height="107" alt="Image" src="https://github.com/user-attachments/assets/1d7aed09-b503-4612-8335-22c9534ccc68" />
  
 * Example entry:
