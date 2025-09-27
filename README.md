@@ -72,22 +72,16 @@ endmodule
 
 ### 2. Yosys Synthesis
 
+<img width="1286" height="718" alt="Image" src="https://github.com/user-attachments/assets/eb1bb2ba-85a3-4615-ba07-7ea1d6ef6e14" />
+
 ```tcl
-read_verilog mux2x1.v
-synth -top mux2x1
-show
-stat
+Design + .lib file send to *Yosys*
+*Yosys* generate netlist file of the designe
+design netlist and test bench of the design is send to *iverilog *
+iverilog generate an vcd file which is then send to *gtkwave *
+gtkwave forms an waveform
 ```
 
-**Yosys Output**:
-
-```
-=== mux2x1 ===
-   Number of wires: 3
-   Number of cells: 1
-   Cell types:
-     $_MUX_ 1
-```
 **Output ScreenShort**
 <img width="1239" height="610" alt="Image" src="https://github.com/user-attachments/assets/f846e721-7063-4ec5-9608-b712d71fecf0" />
 
@@ -101,7 +95,85 @@ stat
 
 ### 1. Exploring `.lib` files
 
-* The Sky130 `.lib` contains delay, power, and setup/hold timing for cells.
+* The Sky130 `.lib` contains delay, power, setup/hold timing for cells and its a collection of logic modules.
+
+## ⏱ Setup Time & Hold Time
+
+### 1. **Setup Time**
+
+* The **minimum time before the clock edge** that the input data (D) of a flip-flop must remain stable.
+* If data changes too close to the clock edge, the flip-flop may capture the wrong value → **setup violation**.
+
+📌 Example:
+If setup time = **50 ps**, then data must arrive at least 50 ps **before** the clock edge.
+
+---
+
+### 2. **Hold Time**
+
+* The **minimum time after the clock edge** that the input data (D) must remain stable.
+* If data changes immediately after the clock edge, the flip-flop might latch incorrect data → **hold violation**.
+
+📌 Example:
+If hold time = **20 ps**, then data must remain stable for at least 20 ps **after** the clock edge.
+
+---
+
+### 3. **Why They Matter?**
+
+* Violating setup → flip-flop doesn’t capture data correctly (late data).
+* Violating hold → flip-flop captures new data too early (early data).
+* Both cause **metastability** and incorrect logic.
+
+---
+
+## ⚡ Faster Cells vs 🐢 Slower Cells
+
+In a **.lib timing library**, multiple versions of a standard cell are provided:
+
+1. **Faster Cells (Low-Vt, higher drive strength, larger transistors)**
+
+   * Lower delay → used to **meet setup time** (critical paths).
+   * But consume **more power** and have higher leakage.
+
+   ✅ Useful for fixing **setup violations**.
+
+---
+
+2. **Slower Cells (High-Vt, smaller transistors, lower drive strength)**
+
+   * Higher delay → used to **add intentional delay**.
+   * Consume **less power** and reduce leakage.
+
+   ✅ Useful for fixing **hold violations** (data path too fast → add delay).
+
+---
+
+## 🏗 Why We Need Both in .lib
+
+* A real chip has both **long paths (critical)** and **short paths (fast)**.
+* To balance timing:
+
+  * Use **faster cells** on long paths → meet setup.
+  * Use **slower cells** on short paths → fix hold.
+* Thus, libraries include **multiple drive strengths and threshold voltages** for each gate (INV_X1, INV_X2, INV_X4, etc.).
+
+---
+
+## 📖 Quick Analogy
+
+* Think of **setup** as arriving at the train station **before the train leaves**. If you’re late, you miss it (setup violation).
+* Think of **hold** as **not leaving the train platform too early** after boarding. If you leave instantly, you might jump into another train (hold violation).
+* Faster trains (fast cells) help you arrive on time → fix setup.
+* Slower trains (slow cells) ensure you don’t leave too early → fix hold.
+
+---
+**Yosys Cmp**
+<img width="454" height="134" alt="Image" src="https://github.com/user-attachments/assets/dc7c5995-92a8-4f84-a4fd-4d8a60cbe3f1" />
+
+**Yosys ABC result nand**
+<img width="385" height="107" alt="Image" src="https://github.com/user-attachments/assets/1d7aed09-b503-4612-8335-22c9534ccc68" />
+ 
 * Example entry:
 
 ```liberty
